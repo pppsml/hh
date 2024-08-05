@@ -58,15 +58,15 @@ navigation.addEventListener("navigate", (e) => {
 Object.freeze(document.location);
 
 const runTasks = async () => {
-  const items = document.querySelectorAll(".serp-item");
+  const items = document.querySelectorAll(".vacancy-card--z_UXteNo7bRGzxWVcL7y")
   for (const [index, item] of items.entries()) {
     item.scrollIntoView({ behavior: "smooth", block: "center" });
     item.style.boxShadow = "0 0 5px red";
 
-    const jobTitle = item.querySelector(".serp-item__title")?.innerText;
-    const jobHref = item.querySelector(".serp-item__title")?.href;
+    const jobTitle = item.querySelector('[data-qa="serp-item__title"]')?.innerText;
+    const jobHref = item.querySelector('[data-qa="serp-item__title"]')?.href;
 
-    const target = item.querySelector(".bloko-button_kind-success");
+    const target = item.querySelector('[data-qa="vacancy-serp__vacancy_response"]');
 
     if (["Respond", "Откликнуться"].includes(target?.innerText)) {
       log(index, "RESPOND", item);
@@ -76,8 +76,14 @@ const runTasks = async () => {
 
       // Вы откликаетесь на вакансию в другой стране
       document
-        .querySelector(".bloko-modal-footer .bloko-button_kind-success")
+        .querySelector(".bloko-modal-footer .bloko-button_kind-success") // [data-qa="relocation-warning-confirm"]
         ?.click();
+
+      const coverLetterToggle = document.querySelector("[data-qa=vacancy-response-popup-form-letter-toggle]");
+      if (coverLetterToggle) {
+        coverLetterToggle.click();
+        wait(1000);
+      }
 
       const coverLetter = document.querySelector(
         "[data-qa=vacancy-response-popup-form-letter-input]"

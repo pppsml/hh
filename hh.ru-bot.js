@@ -59,6 +59,9 @@ Object.freeze(document.location);
 
 const runTasks = async () => {
   const items = document.querySelectorAll(".vacancy-card--z_UXteNo7bRGzxWVcL7y")
+  // vacancy-serp__vacancy vacancy-serp__vacancy_premium
+  // vacancy-serp__vacancy vacancy-serp__vacancy_standard
+  // vacancy-serp__vacancy vacancy-serp__vacancy_standard_plus
   for (const [index, item] of items.entries()) {
     item.scrollIntoView({ behavior: "smooth", block: "center" });
     item.style.boxShadow = "0 0 5px red";
@@ -82,7 +85,7 @@ const runTasks = async () => {
       const coverLetterToggle = document.querySelector("[data-qa=vacancy-response-popup-form-letter-toggle]");
       if (coverLetterToggle) {
         coverLetterToggle.click();
-        wait(1000);
+        wait(2000);
       }
 
       const coverLetter = document.querySelector(
@@ -99,7 +102,7 @@ const runTasks = async () => {
         .querySelector(".bloko-modal-footer .bloko-button_kind-primary")
         ?.click();
 
-      await wait(1111);
+      await wait(2000);
 
       const errorText = document.querySelector(
         ".vacancy-response-popup-error"
@@ -116,7 +119,7 @@ const runTasks = async () => {
       log(index, "already RESPONDED", item);
     }
 
-    await wait(100);
+    await wait(2000);
 
     const blacklist = item.querySelector(
       "[data-qa=vacancy__blacklist-show-add]"
@@ -124,7 +127,7 @@ const runTasks = async () => {
 
     if (blacklist) {
       blacklist.click();
-      await wait(100);
+      await wait(2000);
       document
         .querySelector("[data-qa=vacancy__blacklist-menu-add-vacancy]")
         .click();
@@ -136,7 +139,7 @@ const runTasks = async () => {
       log(index, "already blacklisted", item);
     }
 
-    await wait(1000);
+    await wait(2000);
     item.style.boxShadow = "";
   }
 
